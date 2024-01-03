@@ -18,6 +18,7 @@ var completedTasksHolder=document.getElementById("completed-tasks");//completed-
 var createNewTaskElement=function(taskString){
 
     var listItem=document.createElement("li");
+    listItem.className='task-item';
 
     //input (checkbox)
     var checkBox=document.createElement("input");//checkbx
@@ -37,14 +38,17 @@ var createNewTaskElement=function(taskString){
 
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.className="task-checkbox";
+
     editInput.type="text";
-    editInput.className="task-input-edit";
+    editInput.className="task-input task-input-edit";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="task-btn-edit";
+    editButton.className="btn task-btn-edit";
 
-    deleteButton.className="task-btn-delete";
+    deleteButton.className="btn task-btn-delete";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.className='task-img-delete';
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -82,7 +86,7 @@ var editTask=function(){
 
     var listItem=this.parentNode;
 
-    var editInput=listItem.querySelector('input[type=text]');
+    var editInput=listItem.querySelector('.task-input');
     var label=listItem.querySelector("label");
     var editBtn=listItem.querySelector(".task-btn-edit");
     var containsClass=listItem.classList.contains("task-edit");
@@ -121,6 +125,8 @@ var taskCompleted=function(){
 
     //Append the task list item to the #completed-tasks
     var listItem=this.parentNode;
+    const label = listItem.querySelector('.task-name');
+    label.className = "completed-tasks-name task-name";
     completedTasksHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskIncomplete);
 
@@ -133,6 +139,8 @@ var taskIncomplete=function(){
     //When the checkbox is unchecked
     //Append the task list item to the #incompleteTasks.
     var listItem=this.parentNode;
+    const label = listItem.querySelector('.completed-tasks-name');
+    label.className = 'task-name';
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem,taskCompleted);
 }
