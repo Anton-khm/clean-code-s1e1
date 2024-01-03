@@ -40,6 +40,7 @@
 
 .task-wrapper {
   display: flex;
+  margin-top: 20px;
 }
 
 ul {
@@ -47,8 +48,7 @@ ul {
   padding: 0px;
 }
 
-li,
-h3 {
+li {
   list-style: none;
 }
 
